@@ -5,8 +5,7 @@ import Title from "./components/Title";
 import friends from "./friends.json";
 import "./App.css";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import Footer from ".components/Footer";
+import Footer from "./components/Footer";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
@@ -24,17 +23,24 @@ class App extends Component {
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
-      <Wrapper>
-        <Title>Clicky Game Thingy</Title>
-        {this.state.friends.map(friend => (
-          <FriendCard
-            removeFriend={this.removeFriend}
-            id={friend.id}
-            key={friend.id}
-            image={friend.image}
-          />
-        ))}
-      </Wrapper>
+      <div>
+        <Hero backgroundImage="./img/catHero.jpg">
+          <h1>CLICK IT or TICK IT</h1>
+          <h2>Make that kitty purrrr!</h2>
+        </Hero>
+        <Wrapper>
+          <Title>Clicky Game Thingy</Title>
+          {this.state.friends.map(friend => (
+            <FriendCard
+              removeFriend={this.removeFriend}
+              id={friend.id}
+              key={friend.id}
+              image={friend.image}
+            />
+          ))}
+        </Wrapper>
+        <Footer />
+      </div>
     );
   }
 }
