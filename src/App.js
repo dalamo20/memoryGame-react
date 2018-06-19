@@ -4,6 +4,9 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import friends from "./friends.json";
 import "./App.css";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import Footer from ".components/Footer";
 
 class App extends Component {
   // Setting this.state.friends to the friends json array
