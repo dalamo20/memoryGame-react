@@ -24,6 +24,7 @@
 
 .hero h1, .hero h2 {
   color: white;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .hero h1 {
