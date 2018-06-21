@@ -2,7 +2,7 @@
   "name": "reactmemorygame",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/dalamo20/memoryGame-react/",
+  "homepage": "https://dalamo20.github.io/memoryGame-react/",
   "dependencies": {
     "gh-pages": "^1.2.0",
     "react": "^16.4.1",
