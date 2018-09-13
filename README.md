@@ -1,3 +1,17 @@
+# catMemory
+
+## What is catMemory
+catMemory is a simple memory game where you try to avoid clicking on the same image twice. 
+
+## How It Works
+Simply start by clicking on any image, which then causes the images to shuffle. 
+Without clicking on the same image, try and reach a Top Score of 12. This will really show how well your short-term memory is. 
+With each correct guess 1 point will be added to your score. 
+Once you fail to click on a different image, the game will save your Top Score and reset your original score. 
+
+## GOOD LUCK & HAVE FUN!!!
+
+## Content below is to trouble shoot React.js
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
