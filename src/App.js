@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import FriendCardList from "./components/FriendCardList";
 import friends from "./friends.json";
 
@@ -91,7 +90,6 @@ class App extends Component {
           message={message}
           completed={completed}
         />
-        {/* <Footer /> */}
       </div>
     );
   }
