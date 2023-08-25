@@ -4,4 +4,13 @@ nav.navbar.navbar-default {
 
 .navbar {
   background: white;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 470px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: center;
+  }
 }

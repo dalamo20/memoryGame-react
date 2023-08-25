@@ -1,30 +1,32 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
-import Wrapper from "./components/Wrapper";
-import friends from "./friends.json";
 import "./App.css";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-
+import Footer from "./components/Footer";
+import FriendCardList from "./components/FriendCardList";
+import friends from "./friends.json";
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
   state = {
-    friends, //this should probably be an empty array
+    friends: [], // You can initialize this with an empty array
     score: 0,
-    topScore: 0
+    topScore: 0,
+    message: "",
+    completed: false,
   };
 
+  componentDidMount() {
+    this.setState({ friends: friends });
+  }
+
   //this should shuffle my cards
-  shuffle = array => {
+  shuffle = (array) => {
     let currentIndex = array.length;
     let temporaryValue;
     let randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -35,51 +37,61 @@ class App extends Component {
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+  };
 
-  // handleIncrement increments this.state.count by 1
   handleScore = (index) => {
-    //if i click on a duplicate card, score returns to 0
-    //if id 1 = id 1 , then this is duplicate
-    var array = this.state.friends
+    const array = [...this.state.friends];
     if (!array[index].clicked) {
-        array[index].clicked = true;
-      // We always use the setState method to update a component's state
+      array[index].clicked = true;
+      const newScore = this.state.score + 1;
+      const newTopScore = Math.max(newScore, this.state.topScore);
+
+      if (newScore === 12) {
         this.setState({
-          score: this.state.score + 1,
-          topScore: this.state.score + 1 > this.state.topScore ? this.state.score + 1 : this.state.topScore,
-          friends: this.shuffle(array)
+          score: newScore,
+          topScore: newTopScore,
+          friends: this.shuffle(array),
+          message: "",
+          completed: true,
         });
+      } else {
+        this.setState({
+          score: newScore,
+          topScore: newTopScore,
+          friends: this.shuffle(array),
+          message: "",
+        });
+      }
     } else {
-      array.forEach(friend => friend.clicked = false)
+      array.forEach((friend) => (friend.clicked = false));
       this.setState({
         score: 0,
-        friends: this.shuffle(array)
-      })
+        friends: this.shuffle(array),
+        message:
+          "Oops! You clicked the same image twice. Click an image to start again.",
+        completed: false,
+      });
     }
   };
 
-
-  // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
+    const { score, topScore, message, completed, friends } = this.state;
+
     return (
-      <div>
-        <Navbar score={this.state.score} topScore={this.state.topScore} />
+      <div className="main-container">
+        <Navbar score={score} topScore={topScore} />
         <Hero backgroundImage="./img/catHero.jpg">
-          <h1>CLICK IT or TICK IT</h1>
-          <h2>Make that kitty purrrr!</h2>
+          <h1>CAT MEMORY GAME</h1>
+          <h4>Click one of the cat images below.</h4>
+          <h4>Avoid clicking on the same cat image twice.</h4>
         </Hero>
-        <Wrapper>
-          {this.state.friends.map((friend, i) => (
-            <FriendCard
-              index={i}
-              key={friend.id}
-              image={friend.image}
-              handleScore={this.handleScore}
-            />
-          ))}
-        </Wrapper>
-        <Footer />
+        <FriendCardList
+          friends={friends}
+          handleScore={this.handleScore}
+          message={message}
+          completed={completed}
+        />
+        {/* <Footer /> */}
       </div>
     );
   }
