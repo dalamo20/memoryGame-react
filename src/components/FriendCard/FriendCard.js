@@ -6,7 +6,7 @@ const FriendCard = (props) => (
     onClick={() => props.handleScore(props.index)}
     className="img-container toggle"
   >
-    <img src={props.image} style={{ maxWidth: "100%" }} />
+    <img src={props.image} alt="randomCatImg" style={{ maxWidth: "100%" }} />
   </div>
 );
 
